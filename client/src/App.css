@@ -1,0 +1,170 @@
+
+body, h1, h2, h3, h4, p {
+  font-family: Arial, sans-serif;
+}
+
+ul {
+  list-style-type: none;
+}
+
+tag{
+  color: red;
+}
+
+/* Header */
+.navbar {
+  white-space: nowrap;
+  font-size: 14px;
+  background-color: #23627749;
+  color: rgb(16, 7, 83);
+  padding: 0 10px;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+}
+
+.navbar p {
+  margin-top: 10px;
+}
+
+.menu a {
+  color: rgb(16, 7, 83);
+  margin-right: 20px;
+}
+
+
+/* Header Image */
+.header_image img {
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+
+
+/* Featured Freelancers & Customers */
+.featured-freelancers {
+  text-align: center;
+  margin: 3mm;
+}
+
+.featured-customers {
+  text-align: center;
+  margin: 3mm;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.column {
+  flex: 19%;
+  margin-bottom: 20px;
+}
+
+.column img {
+  width: 3cm;
+  height: 3cm;
+}
+
+
+/* Newsletter Sign Up */
+.email-bar {
+  font-size: 23px;
+  align-items: center;
+  font-family: monospace;
+  display: flex;
+  font-weight: bold;
+  padding: 0 10px;
+  background-color: #c9cad3;
+}
+
+.email-input {
+  border: 1px solid black;
+  padding: 5px 18px;
+  font-size: 14px;
+  margin-top: 1mm;
+  margin-bottom: 1mm;
+  margin-left: 5mm;
+  margin-right: 3mm;
+}
+
+.subscribe-btn {
+  background-color: rgb(152, 196, 207);
+  color: #130941;
+  font-size: medium;
+  font-weight: bolder;
+  border: none;
+  padding: 4px 15px;
+}
+
+
+
+
+/* End of Page Section */
+.footer {
+  background-color: #43a5a8;
+  padding: 20px 0;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.EndOfPage {
+  text-align: center;
+}
+
+.EndOfPage-links {
+  display: flex;
+  justify-content: space-between;
+}
+
+.EndOfPage-links a {
+  color: #fff;
+}
+
+.EndOfPage-links li {
+  flex: 1;
+}
+
+.footer-links {
+  list-style: none;
+  padding-left: 0;
+}
+
+.footer-links li {
+  margin-bottom: 5px;
+  font-size: 1.1rem;
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.icons {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+
+}
+
+.col {
+  margin-right: 100px;
+}
+
+.footer h4 {
+  font-size: 1.5rem;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.col-md {
+  text-align: left;
+}
