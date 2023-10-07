@@ -1,10 +1,26 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Outlet, Link } from 'react-router-dom';
 import { UserContext } from './context/user.context';
 
 function NavigationBar() {
 
-    const { currentUser } = useContext(UserContext);
+    const { currentUser, setCurrentUser } = useContext(UserContext);
+
+    // Load the user's email from localStorage when the component mounts
+    useEffect(() => {
+        const userEmail = localStorage.getItem('userEmail');
+        if (userEmail) {
+            setCurrentUser({ email: userEmail });
+        }
+    }, [setCurrentUser]);
+
+    // Save the user's email to localStorage when it changes
+    useEffect(() => {
+        if (currentUser && currentUser.email) {
+            localStorage.setItem('userEmail', currentUser.email);
+        }
+    }, [currentUser]);
+
 
     return (
         <div >
@@ -13,13 +29,10 @@ function NavigationBar() {
                 <nav className="menu">
                     <Link classname='link' to='/find_dev'> Find DEV </Link>
                     <Link classname='link' to='/find_jobs'> Find Jobs </Link>
-                    {/*<Link className='link' to='/login'> Login </Link>
-                    <Link className='link' to='/create_account'> Create Account </Link>*/}
                     {currentUser ? (
                         <>
                             <Link className='link' to='/profile'> Profile </Link>
                             <span className='link'>{currentUser.email}</span>
-                            {/*<button onClick={handleSignOut}>Sign Out</button> //add this feature later */}
                         </>
                     ) : (
                         <>
