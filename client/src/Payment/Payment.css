@@ -1,6 +1,5 @@
 .payment{
     padding-top: 40px; 
-    padding-bottom: 100px;
     text-align: center;
 }
 .payment h1{
@@ -8,13 +7,12 @@
 }
 
 .reciept{
-    padding: 50px;
-    padding-bottom: 195px;
+    padding: 30px;
 }
 .reciept h3{
     color: green;
 }
-.reciept h2{
+.reciept p{
     color: rgb(35, 64, 94);
 }
 .checkout-form {

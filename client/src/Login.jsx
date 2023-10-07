@@ -110,6 +110,7 @@ const Login = (props) => {
         try {
             await signOutUser();
             setCurrentUser(null);
+            localStorage.removeItem('userEmail');
         } catch (error) {
             console.error('Error signing out:', error.message);
             setErrorMessage('Error signing out! Try Agian!')
@@ -119,18 +120,16 @@ const Login = (props) => {
     const handlePasswordReset = async () => {
         console.log(contact.email)
         if (contact.email) {
-            setErrorMessage('Plase Enter Your Email!')
-        }
-        else {
-            const email = "hanacruz3500@gmail.com";
-
             try {
-                await sendPasswordReset(email);
+                await sendPasswordReset(contact.email);
                 setErrorMessage('Password reset email sent successfully.')
             } catch (error) {
                 console.error('Error sending password reset email:', error.message);
                 setErrorMessage('Error sending password reset email.')
             }
+        }
+        else {
+            setErrorMessage('Plase Enter Your Email!')
         };
     }
 

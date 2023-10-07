@@ -6,6 +6,14 @@ import NewsletterSignUp from '../components/NewsletterSignUp';
 import HomePageAbout from './HomePageAbout'
 
 function HomePage() {
+
+  useEffect(() => {
+    return () => {
+      localStorage.removeItem('jobFormData');
+      localStorage.removeItem('isPaymentCompleted');
+    };
+  }, []); // Empty dependency array
+  
   return (
     <div className="app">
       <HeaderImage

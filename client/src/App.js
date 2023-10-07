@@ -7,7 +7,6 @@ import PostJob from './job-post/JobPost'
 import JobList from './job-post/JobList'
 import Profile from './profile';
 import Payment from './Payment/Pay';
-import PaymentReciept from './Payment/PaymentReciept';
 import FindDev from './components/FindDev'
 import Chat from './extra_features/chat_box'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -25,7 +24,6 @@ function App() {
         <Route path='find_dev' element={<FindDev />} />
         <Route path='post_job' element={<PostJob />} />
         <Route path="payment" element={<Payment />} />
-        <Route path="payment_receipt" element={<PaymentReciept />} />
         <Route path="chat_box" element={<Chat />} />
       </Route>
     </Routes>

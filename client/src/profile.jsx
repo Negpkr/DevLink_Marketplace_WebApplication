@@ -20,6 +20,7 @@ function Profile() {
         try {
             await signOutUser();
             setCurrentUser(null);
+            localStorage.removeItem('userEmail');
             navigate("/");
         } catch (error) {
             console.error("Error signing out:", error.message);

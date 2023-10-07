@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import { useNavigate } from 'react-router-dom';
 import './Payment.css';
 
-const CheckoutForm = () => {
-    const nav = useNavigate();
+const CheckoutForm = ({setStatus}) => {
     const stripe = useStripe();
     const elements = useElements();
     const [error, setError] = useState(null);
@@ -23,7 +21,7 @@ const CheckoutForm = () => {
         if (error) {
             setError(error.message);
         } else {
-            const response = await fetch('http://localhost:3010/create-payment', {
+            const response = await fetch('http://localhost:3007/create-payment', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -33,9 +31,10 @@ const CheckoutForm = () => {
 
             if (response.ok) {
                 console.log('Payment Successful');
-                nav("/payment_receipt");
+                setStatus(true);
             } else {
                 console.error('Payment Failed! Please Try Again Later!');
+                setStatus(false);
             }
         }
     };

@@ -1,35 +1,61 @@
 import { v4 as uuidv4, v4 } from 'uuid';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import JobHeader from './JobHeader';
 import JobTypeSelector from './JobTypeSelector';
-import './job_post.css'
+import '../job-post/job_post.css'
 import { createCollectionAndAddDocuments, uploadImageAndSaveURL } from '../utils/firebase'
-import { Link, useNavigate } from 'react-router-dom'
+import { useLocation, Link, useNavigate } from 'react-router-dom'
 
 
 function JobPost() {
 
   const nav = useNavigate()
-  const [jobType, setJobType] = useState('freelance'); // Default: freelance
+  const [jobType, setJobType] = useState('employment'); // Default: employment
 
   const [headerText, setHeader] = useState('')
+  const [errorText, setErrorText] = useState('')
+  const [isPaymentCompleted, setIsPaymentCompleted] = useState(false);
 
-  const [job, setjob] = useState({
-    key: uuidv4(),
-    title: '',
-    description: '',
-    skill: '',
-    length: '',
-    Paymin: '',
-    Paymax: '',
-    workingHour: '',
-    experience: '',
-    experienceMin: '',
-    imageFile: null
-  })
+
+  const location = useLocation();
+  const formData = location.state?.formData;
+
+  useEffect(() => {
+    const storedFormData = localStorage.getItem('jobFormData');
+    const storedPaymentStatus = localStorage.getItem('isPaymentCompleted');
+
+    if (storedFormData) {
+      setjob(JSON.parse(storedFormData));
+    }
+
+    if (storedPaymentStatus) {
+      setIsPaymentCompleted(JSON.parse(storedPaymentStatus));
+    }
+  }, []);
+
+  const [job, setjob] = useState(() => {
+    // Initialize with form data from the previous session if available
+    return formData || {
+      key: uuidv4(),
+      title: '',
+      description: '',
+      skill: '',
+      length: '',
+      Paymin: '',
+      Paymax: '',
+      workingHour: '',
+      experience: '',
+      experienceMin: '',
+      imageFile: null
+    };
+  });
 
   const { title, description, skill, length, Paymin, Paymax, workingHour, experience, experienceMin, key, imageFile } = job;
   console.log(job);
+
+  useEffect(() => {
+    localStorage.setItem('jobFormData', JSON.stringify(job));
+  }, [job]);
 
   const handleImageChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -76,26 +102,36 @@ function JobPost() {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    if (title == null) {
-      alert("Title is empty!!")
-      return;
+    if (jobType == 'freelance' || (jobType == 'employment' && isPaymentCompleted)) {
+      event.preventDefault();
+      if (title == null) {
+        alert("Title is empty!!")
+        return;
+      }
+      try {
+        const data = await createCollectionAndAddDocuments('Jobs', job)
+        console.log(data)
+        setHeader("Posted!")
+        // Clear form data from local storage on successful submission
+        localStorage.removeItem('jobFormData');
+        localStorage.removeItem('isPaymentCompleted');
+      }
+      catch (error) {
+        alert("Error in posting job! Try Again!");
+        console.log('error in posting job', error.message)
+      }
     }
-    try {
-      //{user} instead of response
-      const data = await createCollectionAndAddDocuments('Jobs', job)
-      console.log(data)
-      setHeader("Posted!")
-    }
-    catch (error) {
-      alert("Error in posting job! Try Again!");
-      console.log('error in posting job', error.message)
+    else {
+      setErrorText("Payment is not conducted yet! Payment amount: 10 AU$")
     }
   }
 
-  const handlePay = () =>{
-    nav("/payment")
-  }
+  const handlePay = () => {
+    setIsPaymentCompleted(true);
+    localStorage.setItem('isPaymentCompleted', JSON.stringify(true)); // Save payment status
+    nav("/payment", { formData: job });
+  };
+  
 
   return (
     <div className="job-post">
@@ -248,12 +284,14 @@ function JobPost() {
               </th>
             </tr>
           </table>
-          <div className="post-button">
-            <button type='submit'
-              onClick={handlePay}>
-              Pay</button>
-            <br></br>
-          </div>
+          {!isPaymentCompleted ? (
+            <div className="post-button">
+              <button name="isPaymentCompleted" type='submit'
+                onClick={handlePay}>
+                Pay</button>
+              <br></br>
+            </div>
+          ) : (<br></br>)}
         </>
       )}
       <div className="post-button">
@@ -261,6 +299,7 @@ function JobPost() {
           onClick={handleSubmit}>
           Post</button>
         <h4>{headerText}</h4>
+        <h5>{errorText}</h5>
         <br></br>
       </div>
     </div>
