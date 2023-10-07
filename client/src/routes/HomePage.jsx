@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import PostJob from '../job-post/PostJobLink'
 import HeaderImage from '../components/HeaderImage';
@@ -13,7 +13,7 @@ function HomePage() {
       localStorage.removeItem('isPaymentCompleted');
     };
   }, []); // Empty dependency array
-  
+
   return (
     <div className="app">
       <HeaderImage
