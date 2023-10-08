@@ -1,34 +1,53 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+
+import React, { useState, useEffect } from 'react';
+//import './ChatBox.css';
+import io from 'socket.io-client';
+
+const socket = io('http://localhost:3010'); 
 
 function Chat() {
-  const [message, setMessage] = useState('');
-  const [botReply, setBotReply] = useState('');
+  const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState('');
 
-  const handleChat = async () => {
-    try {
-      const response = await axios.post('http://localhost:3010/chat', {
-        message
-      });
+  const handleInputChange = (e) => {
+    setInput(e.target.value);
+  };
 
-      setBotReply(response.data.reply);
-    } catch (error) {
-      console.error(error);
+  const handleSendMessage = () => {
+    if (input.trim() !== '') {
+      socket.emit('message', input);
+      setInput('');
     }
   };
 
+  useEffect(() => {
+    socket.on('message', (message) => {
+      setMessages([...messages, { text: message }]);
+    });
+
+    return () => {
+      socket.off('message');
+    };
+  }, [messages]);
+
   return (
-    <div>
-      <h1>Chat Bot</h1>
-      <div>
+    <div className="chat-box">
+      <div className="message-list">
+        {messages.map((message, index) => (
+          <div key={index} className="message">
+            {message.text}
+          </div>
+        ))}
+      </div>
+      <div className="input-box">
         <input
           type="text"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
+          placeholder="Type your message..."
+          value={input}
+          onChange={handleInputChange}
         />
-        <button onClick={handleChat}>Send</button>
+        <button onClick={handleSendMessage}>Send</button>
       </div>
-      <p>{botReply}</p>
     </div>
   );
 }

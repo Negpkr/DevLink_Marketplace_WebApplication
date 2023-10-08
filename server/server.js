@@ -5,6 +5,8 @@ const cors = require("cors")
 require('dotenv').config();
 const path = require('path');
 const axios = require('axios');
+const http = require('http');
+const socketIo = require('socket.io');
 const app = express();
 
 
@@ -43,9 +45,9 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 
-app.get('/', (req,res)=>{
+/*app.get('/', (req,res)=>{
   res.send("Server is working")
-})
+})*/
 
 /*app.use(
   helmet.contentSecurityPolicy({
@@ -152,7 +154,7 @@ app.post("/create-payment", async (req, res) => {
   }
 });
 
-
+/*
 
 const gptKey = process.env.Chatgpt_API_KEY;
 console.log(gptKey);
@@ -184,12 +186,23 @@ app.post('/chat', async (req, res) => {
     res.status(500).send({ error: 'An error occurred' });
   }
 });
+*/
 
+const server = http.createServer(app);
+const io = socketIo(server);
 
+io.on('connection', (socket) => {
+  console.log('A user connected');
 
+  socket.on('message', (message) => {
+    // Broadcast the message to all connected clients
+    io.emit('message', message);
+  });
 
-
-
+  socket.on('disconnect', () => {
+    console.log('A user disconnected');
+  });
+});
 
 
 const PORT = process.env.PORT || 3010;
