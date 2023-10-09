@@ -1,33 +1,24 @@
-/* App.css */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  h1 {
+.container p{
+    padding-bottom: 30px ;
+    font-weight: bold;
+}
+.container h1 {
     font-size: 24px;
     margin-bottom: 20px;
-  }
-  
-  textarea {
+    margin: 3px;
+    padding: 20px;
+    color: #0056b3;
+}
+
+.container textarea {
     width: 100%;
-    height: 100px;
+    height: 40px;
     padding: 10px;
-    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    resize: vertical;
-  }
-  
-  button {
+}
+
+button {
     padding: 10px 20px;
     background-color: #007bff;
     color: #fff;
@@ -35,26 +26,47 @@ body {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-  }
-  
-  button:hover {
+}
+
+button:hover {
     background-color: #0056b3;
-  }
-  
-  ul {
-    list-style: none;
+}
+
+.sent-message {
+    font-size: medium;
+    text-align: right;
+    background-color: #e6f7ff;
+
+}
+
+.recive-message {
+    font-size: medium;
+    text-align: left;
+    background-color: #e6fff3;
+}
+
+/* Message list styles */
+ul {
+    list-style-type: none;
     padding: 0;
-  }
-  
-  li {
+}
+
+li {
     margin-bottom: 10px;
-  }
-  
-  strong {
-    font-weight: bold;
-  }
-  
-  /* Customize this section to match your app's design */
-  /* You can add more styles and customize colors, fonts, etc. */
-  
-  
+    padding: 5px;
+}
+
+.inputs {
+    display: inline-block;
+    text-align: center;
+}
+
+.chat_button {
+    background-color: #1364bb;
+    color: #fff;
+    border: none;
+    padding: 12px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}

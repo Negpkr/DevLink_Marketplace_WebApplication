@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PostJob from '../job-post/PostJobLink'
 import HeaderImage from '../components/HeaderImage';
@@ -20,14 +20,17 @@ function HomePage() {
         alt="Header Image"
         scr="https://blogcdn.gmass.co/blog/wp-content/uploads/2020/12/Featured-image-what-is-an-email-header-43kb.png"
       />
-      <HomePageAbout/>
+      <HomePageAbout />
       <PostJob
         text='Post a Job!'
       />
       <br></br>
       <NewsletterSignUp />
       <br></br>
-      <Link className='chat_box_link' to='/chat_box'> Chat with us </Link>
+      <div className='chat_box_link'>
+        <Link to='/chat_box'> Chat with us </Link>
+      </div>
+      <br></br>
     </div>
   );
 }

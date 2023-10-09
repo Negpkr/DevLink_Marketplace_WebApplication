@@ -16,7 +16,7 @@
   color: white;
   padding: 8px;
   margin: 8px 8;
-  border: 3cm 4cm black;
+  border: 0 1cm black;
   cursor: pointer;
   width: 70%;
   max-width: 4cm;
@@ -72,7 +72,7 @@ input[type=password] {
 
 .signup_link {
   color: white;
-  background-color: rgb(38, 110, 218);
+  background-color:dodgerblue;
   border: none;
   padding: 3px 7px;
   border-radius: 4px;
@@ -83,4 +83,27 @@ input[type=password] {
 
 .error {
   color: red;
+}
+
+.form_auth{
+  padding: 15px;
+  background-color: rgba(29, 152, 190, 0.525);
+}
+
+.form_auth input[type="text"] {
+  width: 30%;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form_auth button{
+  background-color: #243ac7a7;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
 }

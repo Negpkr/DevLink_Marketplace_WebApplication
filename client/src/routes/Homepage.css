@@ -1,24 +1,27 @@
-
-.HomePageAbout
-{
+.HomePageAbout {
     padding: 10px;
     margin: 15px;
 }
 
-.homepage_part1
-{
+.homepage_part1 {
     background-color: rgba(218, 245, 136, 0.285);
     margin-bottom: 20px;
 }
 
-.homepage_part2
-{
+.homepage_part2 {
     background-color: rgba(245, 187, 136, 0.222);
     margin-bottom: 20px;
 }
 
-.homepage_part3
-{
+.homepage_part3 {
     background-color: rgba(136, 198, 245, 0.285);
     margin-bottom: 20px;
+}
+
+.chat_box_link {
+    font-size: large;
+    font-weight: bolder;
+    background-color: rgba(69, 172, 136, 0.262);
+    text-align: center;
+    padding: 5px;
 }

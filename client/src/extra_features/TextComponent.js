@@ -12,22 +12,25 @@ const TextComponent = ({ currentUser }) => {
       text: message,
       sender: currentUser.email,
       timestamp: new Date().getTime(),
-      parentMessageId: null, 
+      parentMessageId: null,
     };
     await createMessageCollectionAndAddMessage(newMessage);
     setMessage('');
   };
-  
+
 
   return (
-    <div>
-      <textarea
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        placeholder="Type your message..."
-      />
-      <button onClick={handleSendMessage}>Send</button>
-    </div>
+    <table className='inputs'>
+      <tr>
+        <td><textarea
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder="Type your message..."
+        /></td>
+        <button className="chat_button" onClick={handleSendMessage}>Send</button>
+      </tr>
+    </table>
+
   );
 };
 

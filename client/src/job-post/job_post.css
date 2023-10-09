@@ -1,25 +1,30 @@
-
-body, h1, h2, h3, p {
+body,
+h1,
+h2,
+h3,
+p {
   margin: 2px;
   padding: 2px;
 }
 
-.job_post{
+.job_post {
   margin-bottom: 10px;
 }
+
 /*link style*/
-.post_job_link{
-  font-size:xx-large;
+.post_job_link {
+  font-size: xx-large;
   font-weight: bolder;
-  background-color: rgba(69, 103, 172, 0.772);
+  background-color: rgba(69, 103, 172, 0.262);
   text-align: center;
   margin: 2px;
   padding: 8px;
 
 }
+
 /* Header */
-.header{
-  font-size:xx-large;
+.header {
+  font-size: xx-large;
   font-weight: bolder;
   background-color: rgba(69, 103, 172, 0.772);
   color: azure;
@@ -29,29 +34,31 @@ body, h1, h2, h3, p {
 }
 
 /* post form titles */
-.job-post h3{
+.job-post h3 {
   background-color: rgb(130, 179, 182);
   color: black;
 }
 
 /* form parts: I used table */
-.form{
+.form {
   text-align: left;
   margin: 15px;
   white-space: nowrap;
   margin-top: 10px;
   margin-bottom: 10px;
 }
-.upload{
+
+.upload {
   text-align: left;
   padding: 20px;
 }
 
-.input{
+.input {
   margin-left: 30px;
   padding: 6px 6px;
 }
-.textarea{
+
+.textarea {
   margin-left: 30px;
 }
 
@@ -63,9 +70,11 @@ body, h1, h2, h3, p {
   background-color: rgba(192, 193, 200, 0.79);
   cursor: pointer;
 }
+
 .form button:hover {
   background-color: #4db7ac;
 }
+
 .form button.color {
   background-color: #1e67b1 !important;
   color: white !important;
@@ -73,24 +82,26 @@ body, h1, h2, h3, p {
 }
 
 /* Post button */
-.post-button{
+.post-button {
   text-align: center;
 }
-.post-button button{
+
+.post-button button {
   background-color: lightgrey;
   font-weight: bolder;
   font-size: large;
   width: 4cm;
   background-color: #15648e;
   color: white;
-  padding: 8px ;
+  padding: 8px;
   margin: 8px 8px;
   border: none;
   cursor: pointer;
 }
+
 /* after clicking on button */
-.post-button h4{
-  color:limegreen;
+.post-button h4 {
+  color: limegreen;
   background: none;
   margin-top: 0;
 }

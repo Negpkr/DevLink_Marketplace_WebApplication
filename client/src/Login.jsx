@@ -155,22 +155,8 @@ const Login = (props) => {
                 </td>
             </tr>
         </table>
-        <div className='forget_password'>
-            <button onClick={handlePasswordReset}>Forget Password</button>
-            <Link to='/create_account' className='signup_link' id="link-to-signup"> Sign Up </Link>
-        </div>
         <br></br>
-        <div className='TwoFA'>
-            {TwoFactorAuth_enable ? (
-                <TwoFactorAuthComponent
-                    Email={email}
-                    Password={password}
-                    onVerified={handleVerified}
-                />
-            ) : (<></>)
-            }
-        </div>
-        <br></br>
+
         <div className='login_google'>
             {currentUser ? (
                 <button onClick={handleSignOut}>Log Out</button>
@@ -183,6 +169,24 @@ const Login = (props) => {
             {errorMessage && (
                 <p className="error"> {errorMessage} </p>
             )}
+        </div>
+        <br></br>
+
+        <div className='TwoFA'>
+            {TwoFactorAuth_enable ? (
+                <TwoFactorAuthComponent
+                    Email={email}
+                    Password={password}
+                    onVerified={handleVerified}
+                />
+            ) : (<></>)
+            }
+        </div>
+        <br></br>
+
+        <div className='forget_password'>
+            <button onClick={handlePasswordReset}>Forget Password</button>
+            <Link to='/create_account' className='signup_link' id="link-to-signup"> Sign Up </Link>
         </div>
     </div>
 
