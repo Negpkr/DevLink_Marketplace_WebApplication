@@ -1,10 +1,7 @@
 import React, { useContext } from "react";
 import Footer from "./Footer";
 import NavigationBar from "./NavigationBar";
-import { UserContext } from './context/user.context'
 function NavFooter() {
-    const { currentUser } = useContext(UserContext)
-    console.log(currentUser)
     return (
         <div>
             <NavigationBar />

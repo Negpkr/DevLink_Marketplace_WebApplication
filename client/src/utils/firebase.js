@@ -81,26 +81,6 @@ export const fetchJobAndDocuments = async (collectionName) =>{
    return jobMap;
 }
 
-// Additional Firestore functions 
-/*export const fetchDocumentsFromCollection = async (collectionName, field, value) => {
-    try {
-      const collectionRef = collection(db, collectionName);
-      const q = query(collectionRef, where(field, "==", value));
-      const querySnapshot = await getDocs(q);
-  
-      const documents = [];
-      querySnapshot.forEach((doc) => {
-        documents.push({ id: doc.id, ...doc.data() });
-      });
-  
-      return documents;
-    } catch (error) {
-      console.error("Error fetching documents: ", error.message);
-      return [];
-    }
-  };
-*/
-
 export const fetchUsersAndDocuments = async () =>{
   const collectionRef = collection(db, 'users')
   const q = query(collectionRef)
@@ -191,3 +171,15 @@ export const sendPasswordReset = async (email) => {
     console.error('Error sending password reset email:', error.message);
   }
 };
+
+
+export const createMessageCollectionAndAddMessage = async (message) => {
+  const collectionRef = collection(db, 'messages');
+  const docRef = doc(collectionRef, uuidv4()); // Use a unique ID for each message
+  try {
+    await setDoc(docRef, message);
+    console.log('Message added successfully!');
+  } catch (error) {
+    console.error('Error adding message:', error.message);
+  }
+}

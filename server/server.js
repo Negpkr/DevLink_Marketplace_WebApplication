@@ -1,17 +1,22 @@
-const express = require("express");
+const express = require('express');
 const bodyParser = require("body-parser");
 const sgMail = require('@sendgrid/mail');
-const cors = require("cors")
-require('dotenv').config();
 const path = require('path');
 const axios = require('axios');
 const http = require('http');
 const socketIo = require('socket.io');
+const openai = require('openai');
+const cors = require('cors')
+require('dotenv').config();
+
 const app = express();
+//const server = http.createServer(app);
+//const io = socketIo(server);
+
+app.use(cors());
 
 
 app.use(express.static(path.join(__dirname + "/public")));
-app.use(cors())
 
 //const server = http.createServer(app);
 //const io = socketIo(server);
@@ -154,8 +159,8 @@ app.post("/create-payment", async (req, res) => {
   }
 });
 
-/*
 
+/*
 const gptKey = process.env.Chatgpt_API_KEY;
 console.log(gptKey);
 
@@ -186,10 +191,7 @@ app.post('/chat', async (req, res) => {
     res.status(500).send({ error: 'An error occurred' });
   }
 });
-*/
 
-const server = http.createServer(app);
-const io = socketIo(server);
 
 io.on('connection', (socket) => {
   console.log('A user connected');
@@ -205,6 +207,54 @@ io.on('connection', (socket) => {
 });
 
 
+const SAFE_PORT = process.env.SAFE_PORT || 3011;
+server.listen(SAFE_PORT, () => {
+  console.log(`Socket.io server is running on port ${SAFE_PORT}`);
+});
+*/
+/*
+const apiKey = process.env.Chatgpt_API_KEY;
+const openaiInstance = new openai.OpenAI(apiKey);
+
+app.post('/api/chatbot', async (req, res) => {
+  const message = req.body.message;
+
+  const response = await openaiInstance.complete({
+    engine: 'davinci',
+    prompt: message,
+    maxTokens: 50,
+    temperature: 0.6,
+    n: 1,
+    stop: '\n',
+  });
+
+  const botResponse = response.choices[0].text.trim();
+  res.json({ response: botResponse });
+});
+*/
+
+/*
+// Define an API endpoint to handle the OpenAI API calls
+app.post('/api/message', async (req, res) => {
+  const { message } = req.body;
+
+  // Add your OpenAI API call here using the axios library
+  // For example:
+  const response = await axios.post('https://api.openai.com/v1/engines/davinci-codex/completions', {
+    prompt: message,
+    max_tokens: 100,
+    temperature: 0.7,
+  }, {
+    headers: {
+      Authorization: 'Bearer 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',
+      'Content-Type': 'application/json',
+    },
+  });
+
+  // Extract the generated response from the OpenAI API and send it back to the client
+  res.json({ response: response.data.choices[0].text });
+});
+*/
 const PORT = process.env.PORT || 3010;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
