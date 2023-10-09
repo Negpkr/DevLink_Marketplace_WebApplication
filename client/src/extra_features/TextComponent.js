@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { createMessageCollectionAndAddMessage } from '../utils/firebase';
 import { v4 as uuidv4, v4 } from 'uuid';
 
-const MessagingComponent = ({ currentUser }) => {
+const TextComponent = ({ currentUser }) => {
   const [message, setMessage] = useState('');
 
   const handleSendMessage = async () => {
@@ -31,4 +31,4 @@ const MessagingComponent = ({ currentUser }) => {
   );
 };
 
-export default MessagingComponent;
+export default TextComponent;

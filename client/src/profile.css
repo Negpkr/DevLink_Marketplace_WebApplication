@@ -1,0 +1,74 @@
+/*Profile Page Design*/
+
+.profile {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 50px;
+}
+
+/* Headers */
+.profile h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #22217a;
+}
+
+.profile h3 {
+    font-size: 18px;
+    color: #555;
+}
+
+.profile h4 {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.profile p {
+    margin-bottom: 20px;
+}
+
+.account_detail {
+    padding: 10px;
+    background-color: rgba(29, 152, 190, 0.749);
+    text-align: left;
+    font-weight: bolder;
+}
+
+/* Two Factor Auth and name section */
+.profile_change {
+    padding: 50px;
+    background-color: lightsteelblue;
+    text-align: left;
+    font-weight: bolder;
+}
+
+.profile_change input[type="text"] {
+    width: 100%;
+    padding: 3px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.button {
+    background-color: #1364bb;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.profile_change table {
+    margin-top: 40px;
+}
+
+.message {
+    color: #28a745;
+}
+
+.error {
+    color: #dc3545;
+}

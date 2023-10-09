@@ -1,7 +1,10 @@
-import React, { useContext } from "react";
+//Footer Part
+import React from "react";
 import Footer from "./Footer";
 import NavigationBar from "./NavigationBar";
+
 function NavFooter() {
+
     return (
         <div>
             <NavigationBar />

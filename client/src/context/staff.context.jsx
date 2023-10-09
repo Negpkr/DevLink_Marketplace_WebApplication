@@ -5,6 +5,7 @@ export const StaffContext = createContext({
 staff: [],
 })
 
+//make Staff details reusable in other files
 export const StaffProvider = ({children}) =>{
     const [staff, setStaff] = useState([])
     useEffect(()=>{

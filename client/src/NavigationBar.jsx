@@ -1,3 +1,4 @@
+//Navigation Bar Part
 import React, { useContext, useEffect } from 'react'
 import { Outlet, Link } from 'react-router-dom';
 import { UserContext } from './context/user.context';
@@ -6,7 +7,7 @@ function NavigationBar() {
 
     const { currentUser, setCurrentUser } = useContext(UserContext);
 
-    // Load the user's email from localStorage when the component mounts
+    // Load the user's email from localStorage
     useEffect(() => {
         const userEmail = localStorage.getItem('userEmail');
         if (userEmail) {
@@ -21,7 +22,6 @@ function NavigationBar() {
         }
     }, [currentUser]);
 
-
     return (
         <div >
             <div className="navbar">
@@ -29,6 +29,8 @@ function NavigationBar() {
                 <nav className="menu">
                     <Link classname='link' to='/find_dev'> Find DEV </Link>
                     <Link classname='link' to='/find_jobs'> Find Jobs </Link>
+
+                    {/*If user logged in*/}
                     {currentUser ? (
                         <>
                             <Link className='link' to='/profile'> Profile </Link>

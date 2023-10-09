@@ -3,7 +3,7 @@ import { Checkbox } from 'semantic-ui-react'
 
 const CheckboxExampleToggle = (props) =>
     <div>
-        <Checkbox toggle onClick={props.change}/>
+        <Checkbox toggle onClick={props.change} />
     </div>
 
 export default CheckboxExampleToggle

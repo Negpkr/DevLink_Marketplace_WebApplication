@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { UserContext } from '../context/user.context';
-import MessagingComponent from './chatservice';
-import MessageDisplay from './chatSlice';
+import MessagingComponent from './TextComponent';
+import MessageDisplay from './TextDisplay';
 
-const SecureCommunicationPage = () => {
+const Chat = () => {
   const { currentUser } = useContext(UserContext);
 
   return (
@@ -21,4 +21,4 @@ const SecureCommunicationPage = () => {
   );
 };
 
-export default SecureCommunicationPage;
+export default Chat;

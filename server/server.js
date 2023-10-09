@@ -2,68 +2,36 @@ const express = require('express');
 const bodyParser = require("body-parser");
 const sgMail = require('@sendgrid/mail');
 const path = require('path');
+
+/*
+****Libraries required for AI chatbot implementation ****
+**Not implemented in this task due to browser security errors**
+****I only implemented message box****
 const axios = require('axios');
 const http = require('http');
 const socketIo = require('socket.io');
 const openai = require('openai');
+*/
+
 const cors = require('cors')
 require('dotenv').config();
 
 const app = express();
-//const server = http.createServer(app);
-//const io = socketIo(server);
-
 app.use(cors());
 
 
 app.use(express.static(path.join(__dirname + "/public")));
-
-//const server = http.createServer(app);
-//const io = socketIo(server);
-/*app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*'); // Allows requests from any origin
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  next();
-});*/
-
-// Serve static files from the 'client/build' directory
-/*
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-}
-
-// Handle production environment
-if (process.env.NODE_ENV === 'production') {
-  // Serve the React app's HTML file for all other routes
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-  });
-}
-*/
-
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 app.use(express.json());
-
 app.use(bodyParser.json());
 
 
-/*app.get('/', (req,res)=>{
+app.get('/', (req,res)=>{
   res.send("Server is working")
-})*/
+})
 
-/*app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      fontSrc: ["'self'", 'https://fonts.googleapis.com'],
-      // Add more directives as needed
-    },
-  })
-);*/
-
-
+//*Sending Subscription Part
 const Key = process.env.APIkey;
 sgMail.setApiKey(Key);
 
@@ -76,7 +44,7 @@ app.post('/subscribe', async (req, res) => {
   try {
     const msg = {
       to: email,
-      from: 'neginpakrooh@gmail.com',
+      from: 'neginpakrooh@gmail.com',   // Sender's email
       subject: 'Welcome to DevLink Marketplace!',
       text: 'You signed up for our daily insider! Thank you! ',
     };
@@ -89,6 +57,7 @@ app.post('/subscribe', async (req, res) => {
   }
 });
 
+//*Two Factor Autho enabling and sending part
 app.post('/api/enable-2fa', async (req, res) => {
   const email_auth = req.body;
   console.log(email_auth);
@@ -105,9 +74,7 @@ app.post('/api/enable-2fa', async (req, res) => {
       subject: 'Enable 2FA for Your Account',
       text: `Use the following 6-digit code to enable 2FA: ${verificationCode}`,
     };
-
     await sgMail.send(msg_auth);
-    // You can save the verificationCode in the database for future validation
     res.json( verificationCode );
   }
   catch (error) {
@@ -123,9 +90,7 @@ app.post('/api/verify-2fa', async(req, res) => {
     code : code,
     savedCode : savedCode
 }
-
-  console.log(data)
-
+  console.log(data)    //Must be removed
   if (String(code) == String(savedCode)) {
     res.json({ success: true });
   } else {
@@ -133,6 +98,8 @@ app.post('/api/verify-2fa', async(req, res) => {
   }
 });
 
+
+//*Payment Part
 //Creating Backend part for payment page
 const SKey = process.env.STRIPE_SECRET_KEY;
 const PKey = process.env.STRIPE_PUBLISHABLE_KEY;
@@ -161,11 +128,13 @@ app.post("/create-payment", async (req, res) => {
 
 
 /*
+***Please ignore this part
+***********AI Chatbot implementation
+********Removed due to browser security issues
+******Plan to implement in the future projects
+
 const gptKey = process.env.Chatgpt_API_KEY;
-console.log(gptKey);
-
 const apiUrl = 'https://api.openai.com/v1/completions';
-
 
 app.post('/chat', async (req, res) => {
   const { message } = req.body;
@@ -191,70 +160,8 @@ app.post('/chat', async (req, res) => {
     res.status(500).send({ error: 'An error occurred' });
   }
 });
-
-
-io.on('connection', (socket) => {
-  console.log('A user connected');
-
-  socket.on('message', (message) => {
-    // Broadcast the message to all connected clients
-    io.emit('message', message);
-  });
-
-  socket.on('disconnect', () => {
-    console.log('A user disconnected');
-  });
-});
-
-
-const SAFE_PORT = process.env.SAFE_PORT || 3011;
-server.listen(SAFE_PORT, () => {
-  console.log(`Socket.io server is running on port ${SAFE_PORT}`);
-});
-*/
-/*
-const apiKey = process.env.Chatgpt_API_KEY;
-const openaiInstance = new openai.OpenAI(apiKey);
-
-app.post('/api/chatbot', async (req, res) => {
-  const message = req.body.message;
-
-  const response = await openaiInstance.complete({
-    engine: 'davinci',
-    prompt: message,
-    maxTokens: 50,
-    temperature: 0.6,
-    n: 1,
-    stop: '\n',
-  });
-
-  const botResponse = response.choices[0].text.trim();
-  res.json({ response: botResponse });
-});
 */
 
-/*
-// Define an API endpoint to handle the OpenAI API calls
-app.post('/api/message', async (req, res) => {
-  const { message } = req.body;
-
-  // Add your OpenAI API call here using the axios library
-  // For example:
-  const response = await axios.post('https://api.openai.com/v1/engines/davinci-codex/completions', {
-    prompt: message,
-    max_tokens: 100,
-    temperature: 0.7,
-  }, {
-    headers: {
-      Authorization: 'Bearer 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',
-      'Content-Type': 'application/json',
-    },
-  });
-
-  // Extract the generated response from the OpenAI API and send it back to the client
-  res.json({ response: response.data.choices[0].text });
-});
-*/
 const PORT = process.env.PORT || 3010;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

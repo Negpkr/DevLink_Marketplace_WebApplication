@@ -4,6 +4,7 @@ export const JobContext = createContext({
 job: {},
 })
 
+//make Job details reusable in other files
 export const JobProvider = ({children}) =>{
     const [job, setJob] = useState({})
     useEffect(()=>{

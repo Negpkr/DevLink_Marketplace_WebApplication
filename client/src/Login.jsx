@@ -1,30 +1,27 @@
 import React, { useState, useContext, useEffect } from 'react'
-import './Login.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { sendPasswordReset, signOutUser, signInWithGooglePopup, createUserDocFromAuth, SigninAuthUserWithEmailAndPassword } from './utils/firebase'
 import { UserContext, UserDetailContext } from './context/user.context'
 import TwoFactorAuthComponent from "./extra_features/TwoFactorAuth"
+import './Login.css'
 
 const Login = (props) => {
+
+    const nav = useNavigate();
 
     const [errorMessage, setErrorMessage] = useState('');
     const [TwoFactorAuth_enable, setTwoFactorAuth_enable] = useState(false);
     const [TwoFactorAuth_varified, setTwoFactorAuth_varified] = useState(false);
 
-    const nav = useNavigate();
-
+    //For login with google
     const logGoogleUser = async () => {
         const { user } = await signInWithGooglePopup();
         const userDocRef = await createUserDocFromAuth(user);
     }
 
-
-    //const {setCurrentUser} = useContext(UserContext)
     const { currentUser, setCurrentUser } = useContext(UserContext); //modified in 9.1
     //added to fetch more details from User database
     const { userDetail } = useContext(UserDetailContext);
-
-
 
     const [contact, setContact] = useState({
         email: '',
@@ -44,7 +41,6 @@ const Login = (props) => {
                 //console.log(email)
             }
         });
-
     }, [contact.email, userDetail]);
 
     const handleChange = (event) => {
@@ -61,12 +57,11 @@ const Login = (props) => {
         event.preventDefault();
 
         try {
-            // Check if 2FA is enabled for the user
+            // if 2FA is not enabled yet
             if (!TwoFactorAuth_enable) {
                 const { user } = await SigninAuthUserWithEmailAndPassword(email, password);
                 if ({ user } != null) {
-                    // Redirect to the user's profile or homepage
-                    //nav("/profile"); or
+                    // Redirect to the homepage
                     nav("/")
                 }
                 else {
@@ -76,11 +71,11 @@ const Login = (props) => {
                 setCurrentUser(user)
             }
             else {
+                // if 2FA is enabled and varified
                 if (TwoFactorAuth_varified) {
                     const { user } = await SigninAuthUserWithEmailAndPassword(email, password);
                     if ({ user } != null) {
-                        // Redirect to the user's profile or homepage
-                        //nav("/profile"); or
+                        // Redirect to the homepage
                         nav("/")
                     }
                     else {
@@ -91,7 +86,6 @@ const Login = (props) => {
                 }
                 else {
                     setErrorMessage("Varify first!")
-
                 }
             }
         } catch (error) {
@@ -105,11 +99,11 @@ const Login = (props) => {
         console.log(TwoFactorAuth_varified)
     };
 
-    //Newly added
     const handleSignOut = async () => {
         try {
             await signOutUser();
             setCurrentUser(null);
+            //remore local storage for userEmail
             localStorage.removeItem('userEmail');
         } catch (error) {
             console.error('Error signing out:', error.message);
@@ -135,13 +129,9 @@ const Login = (props) => {
 
     return <div className='login'>
 
+        <h1>Login to DevLink Account</h1>
+
         <table className='table'>
-            <tr>
-                <td></td>
-                <td>
-                    <form className='form'><Link to='/create_account' className='link' id="link-to-signup"> Sign Up </Link></form>
-                </td>
-            </tr>
             <tr>
                 <td>Your email</td>
                 <td>
@@ -165,10 +155,12 @@ const Login = (props) => {
                 </td>
             </tr>
         </table>
-        <div>
+        <div className='forget_password'>
             <button onClick={handlePasswordReset}>Forget Password</button>
+            <Link to='/create_account' className='signup_link' id="link-to-signup"> Sign Up </Link>
         </div>
-        <div>
+        <br></br>
+        <div className='TwoFA'>
             {TwoFactorAuth_enable ? (
                 <TwoFactorAuthComponent
                     Email={email}
@@ -178,8 +170,8 @@ const Login = (props) => {
             ) : (<></>)
             }
         </div>
-        <div className='login'>
-            {/* Updated */}
+        <br></br>
+        <div className='login_google'>
             {currentUser ? (
                 <button onClick={handleSignOut}>Log Out</button>
             ) : (
