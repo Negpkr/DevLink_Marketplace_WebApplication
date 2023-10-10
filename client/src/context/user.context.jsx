@@ -3,7 +3,7 @@ import React, { createContext, useReducer, useState, useEffect } from "react";
 import UserReducer from "../reducers/UserReducer";
 import { fetchUsersAndDocuments } from "../utils/firebase";
 
-// Create contexts with default values
+// to access user email
 export const UserContext = createContext({
   currentUser: null,
   setCurrentUser: () => null,
@@ -29,12 +29,12 @@ export const UserProvider = ({ children }) => {
   );
 };
 
-
-
+//
 export const UserDetailContext = createContext({
   userDetail: {},
 });
 
+// to access user details
 export const UserDetailsProvider = ({ children }) => {
   const [userDetail, setuserDetail] = useState({});
 

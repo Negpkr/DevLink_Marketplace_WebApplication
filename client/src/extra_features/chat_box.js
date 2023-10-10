@@ -2,14 +2,13 @@ import React, { useEffect, useState, useContext } from 'react';
 import { collection, query, onSnapshot, orderBy } from 'firebase/firestore';
 import { db } from '../utils/firebase';
 import MessagingComponent from './TextComponent';
-import { UserContext, UserDetailContext } from '../context/user.context';
+import { UserContext } from '../context/user.context';
 import "./chat_box.css"
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
   const { currentUser } = useContext(UserContext);
-
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -57,7 +56,7 @@ const Chat = () => {
         <p>Please sign in to use secure communication features.</p>
       )}
     </div>
-  );  
+  );
 };
 
 export default Chat;

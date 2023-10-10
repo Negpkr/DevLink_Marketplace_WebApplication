@@ -5,7 +5,6 @@ import './index.css';
 import App from './App';
 import { UserProvider, UserDetailsProvider } from './context/user.context'
 import { JobProvider } from './context/post.context'
-//import { StaffProvider } from './context/staff.context'
 import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.render(

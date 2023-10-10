@@ -1,7 +1,8 @@
-.container p{
-    padding-bottom: 30px ;
+.container p {
+    padding-bottom: 30px;
     font-weight: bold;
 }
+
 .container h1 {
     font-size: 24px;
     margin-bottom: 20px;
@@ -32,7 +33,7 @@ button:hover {
     background-color: #0056b3;
 }
 
-.sent-message div{
+.sent-message div {
     color: #1364bb;
     font-size: medium;
     text-align: right;

@@ -11,7 +11,6 @@ const UserReducer = (state, action) =>
         default:
             throw new Error ('unhandeled type ${type}')    
     }
-
 }
 
 export default UserReducer

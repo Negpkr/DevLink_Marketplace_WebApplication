@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import './Payment.css';
 
-const CheckoutForm = ({setStatus}) => {
+const CheckoutForm = ({ setStatus }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [error, setError] = useState(null);

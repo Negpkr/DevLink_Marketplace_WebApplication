@@ -9,17 +9,17 @@ const Footer = (props) => {
           <div className="col">
             <h4>{props.company}</h4>
             <ul className="footer-links">
-              <li><a href="">{props.s1p1}</a></li>
-              <li><a href="#">{props.s1p2}</a></li>
-              <li><a href="#">{props.s1p3}</a></li>
+              <li><a href="https://akriviahcm.com/hr-glossary/job-posting/#:~:text=What%20is%20a%20job%20posting,required%20qualifications%2C%20and%20additional%20information.">{props.s1p1}</a></li>
+              <li><a href="https://www.youtube.com/watch?v=Uus23IAGrC0">{props.s1p2}</a></li>
+              <li><a href="https://www.linkedin.com/pulse/how-find-get-job-fast-8-proven-tips-from-hr-expert-tom%C3%A1%C5%A1-ondrejka">{props.s1p3}</a></li>
             </ul>
           </div>
           <div className="col">
             <h4>{props.client}</h4>
             <ul className="footer-links">
-              <li><a href="#">{props.s2p1}</a></li>
-              <li><a href="#">{props.s2p2}</a></li>
-              <li><a href="#">{props.s2p2}</a></li>
+              <li><a href="https://au.indeed.com/hire/c/info/job-boards?gclid=CjwKCAjwyY6pBhA9EiwAMzmfwZE5Ma6RrqkZeZpMdz3uYopvx6kIWqmAIjAejWNvbbn2h2G_OWTDMBoCZAoQAvD_BwE&aceid=&gclsrc=aw.ds">{props.s2p1}</a></li>
+              <li><a href="https://www.youtube.com/watch?v=B2IT0zvAtdU">{props.s2p2}</a></li>
+              <li><a href="https://www.linkedin.com/pulse/how-get-job-through-linkedin-complete-guide-deep-kumar">{props.s2p3}</a></li>
             </ul>
           </div>
           <div className="col">
@@ -35,7 +35,7 @@ const Footer = (props) => {
           <h4>{props.endOfPage}</h4>
           <ul className="EndOfPage-links">
             <li><a href="https://business.gov.au/legal-notices/privacy">{props.endp1}</a></li>
-            <li><a href="#">{props.endp2}</a></li>
+            <li><a href="https://www.digitalsilk.com/digital-trends/website-terminology/">{props.endp2}</a></li>
             <li><a href="https://business.gov.au/legal/fair-trading/codes-of-conduct">{props.endp3}</a></li>
           </ul>
           <div className="col-md">

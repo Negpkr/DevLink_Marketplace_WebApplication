@@ -4,7 +4,7 @@ import JobHeader from './JobHeader';
 import JobTypeSelector from './JobTypeSelector';
 import '../job-post/job_post.css'
 import { createCollectionAndAddDocuments, uploadImageAndSaveURL } from '../utils/firebase'
-import { useLocation, Link, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 
 function JobPost() {
@@ -131,7 +131,7 @@ function JobPost() {
     localStorage.setItem('isPaymentCompleted', JSON.stringify(true)); // Save payment status
     nav("/payment", { formData: job });
   };
-  
+
 
   return (
     <div className="job-post">

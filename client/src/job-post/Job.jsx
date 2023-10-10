@@ -10,7 +10,7 @@ const Job = (props) => {
     return (
         <div className='column'>
             <br></br>
-            <img src={props.imageurl} alt="JobPhoto"/>
+            <img src={props.imageurl} alt="JobPhoto" />
             <h3>{props.title}</h3>
             <p>{props.description}</p>
             <p>{props.skill}</p>

@@ -24,8 +24,8 @@ function JobList(props) {
   // Define the filteredJobs after hiddenJobs
   const filteredJobs = Object.values(job).filter((jobItem) => {
     return jobItem.title.toLowerCase().includes(searchJob.toLowerCase())
-    &&
-    !hiddenJobs.includes(jobItem.title)
+      &&
+      !hiddenJobs.includes(jobItem.title)
   });
 
   const displayedJobs = showAll ? filteredJobs : filteredJobs.slice(0, 3); // Show first 3 items
@@ -57,7 +57,7 @@ function JobList(props) {
             experience={jobItem.experience}
             experiencemin={jobItem.experiencemin}
 
-            onclick= {() => handleHideJob(jobItem.title)}
+            onclick={() => handleHideJob(jobItem.title)}
           >
           </Job>
         ))}

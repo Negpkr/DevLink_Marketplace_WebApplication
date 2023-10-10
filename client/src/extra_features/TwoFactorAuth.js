@@ -36,7 +36,6 @@ function TwoFactorAuthComponent(props) {
     }
   };
 
-
   const verifyCode = async () => {
     try {
       if (EnteredCode == '') {
@@ -87,13 +86,13 @@ function TwoFactorAuthComponent(props) {
               required
               type="text"
               value={EnteredCode}
-              onChange={(e) => setEnteredCode(e.target.value)}/>
+              onChange={(e) => setEnteredCode(e.target.value)} />
           </label>
           <br />
           <button onClick={verifyCode}>Verify</button>
         </div>
       )}
-      
+
       {error && <div style={{ color: 'red' }}>{error}</div>}
       {Message && <p className="message" style={{ color: 'green' }}> {Message} </p>}
     </div>

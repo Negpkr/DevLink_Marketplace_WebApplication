@@ -18,7 +18,6 @@ const TextComponent = ({ currentUser }) => {
     setMessage('');
   };
 
-
   return (
     <table className='inputs'>
       <tr>
