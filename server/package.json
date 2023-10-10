@@ -9,9 +9,6 @@
   },
   "author": "",
   "license": "ISC",
-  "engines": {
-    "node": "20.5.0"
-  },
   "dependencies": {
     "@sendgrid/mail": "^7.7.0",
     "axios": "^1.5.1",
@@ -26,5 +23,8 @@
     "socket.io": "^4.7.2",
     "socket.io-client": "^4.7.2",
     "stripe": "^13.9.0"
+  },
+  "engines": {
+    "node": "20.5.0"
   }
 }
