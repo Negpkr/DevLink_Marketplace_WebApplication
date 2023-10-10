@@ -32,18 +32,21 @@ button:hover {
     background-color: #0056b3;
 }
 
-.sent-message {
+.sent-message div{
+    color: #1364bb;
     font-size: medium;
     text-align: right;
     background-color: #e6f7ff;
 
 }
 
-.recive-message {
+.receive-message div {
     font-size: medium;
     text-align: left;
     background-color: #e6fff3;
+    display: inline-flex;
 }
+
 
 /* Message list styles */
 ul {

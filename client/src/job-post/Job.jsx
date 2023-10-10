@@ -22,8 +22,8 @@ const Job = (props) => {
                 <p>Experience Min: {props.experiencemin} years</p>
                 <a href={props.imageurl}>See Image</a>
             </div>}
-            <button onClick={props.onclick}>Hide</button>
-            <button onClick={toggleExpand}>Details</button>
+            <button className="job_buttons" onClick={props.onclick}>Hide</button>
+            <button className="job_buttons" onClick={toggleExpand}>Details</button>
         </div>
     );
 };

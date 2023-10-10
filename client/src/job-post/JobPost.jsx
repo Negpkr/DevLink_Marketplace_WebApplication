@@ -140,7 +140,7 @@ function JobPost() {
       <JobTypeSelector jobType={jobType} setJobType={setJobType} />
       <h3>Describe your job</h3>
       <section>
-        <table className="form">
+        <table className="job_form">
           <tr>
             <th>Title / Position</th>
             <th>

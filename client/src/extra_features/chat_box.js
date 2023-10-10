@@ -10,6 +10,7 @@ const Chat = () => {
   const [loading, setLoading] = useState(true);
   const { currentUser } = useContext(UserContext);
 
+
   useEffect(() => {
     const fetchMessages = async () => {
       const messagesRef = collection(db, 'messages');
@@ -38,10 +39,10 @@ const Chat = () => {
           <MessagingComponent currentUser={currentUser} />
           <div className="message-display">
             <ul>
-              {messages.map((message) => (
+              {messages.slice().reverse().map((message) => ( // Reverse the order of messages
                 <li
                   key={message.id}
-                  className={message.sender === currentUser.email ? 'sent-message' : 'recive-message'}
+                  className={message.sender === currentUser.email ? 'sent-message' : 'receive-message'}
                 >
                   {message.sender !== currentUser.email && (
                     <div className="email">{message.sender}</div>
@@ -56,7 +57,7 @@ const Chat = () => {
         <p>Please sign in to use secure communication features.</p>
       )}
     </div>
-  );
+  );  
 };
 
 export default Chat;
